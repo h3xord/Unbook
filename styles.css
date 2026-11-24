@@ -1,0 +1,26 @@
+/*
+ * Unbook — Instant CSS hiding (runs at document_start to prevent flicker)
+ * Targets the Facebook icon button and navigation links without touching chat messages.
+ */
+
+/* Hide any link/button containing the Facebook "f" logo SVG */
+a:has(> div > svg path[d^="M8.909 15.445"]),
+a:has(svg[viewBox="0 0 16 16"] path[d^="M8.909 15.445"]),
+[role="link"]:has(svg[viewBox="0 0 16 16"] path[d^="M8.909 15.445"]),
+[role="button"]:has(svg[viewBox="0 0 16 16"] path[d^="M8.909 15.445"]),
+/* Fallback: hide the icon wrapper itself if not inside a standard link/button */
+div:has(> svg[viewBox="0 0 16 16"] path[d^="M8.909 15.445"]),
+/* Fallback: hide explicit Facebook home links in navigation regions */
+[role="navigation"] a[href="https://www.facebook.com/"],
+[role="navigation"] a[href="https://www.facebook.com"],
+[role="navigation"] a[href^="https://www.facebook.com/?"],
+[role="navigation"] a[href="https://facebook.com/"],
+[role="navigation"] a[href="https://facebook.com"],
+[role="navigation"] a[aria-label="Facebook" i],
+[role="navigation"] a[aria-label="Go to Facebook" i],
+/* Elements flagged by content.js */
+[data-unbook-hidden="true"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
